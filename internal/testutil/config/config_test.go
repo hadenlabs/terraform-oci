@@ -3,25 +3,28 @@ package config
 import (
 	"testing"
 
-	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 
-	coreconfig "github.com/hadenlabs/terraform-module-template/config"
+	coreconfig "github.com/hadenlabs/terraform-oci/config"
 )
 
 func TestConfigLoadEnvSuccess(t *testing.T) {
 	conf, err := LoadEnvWithFilename("./mocking/config.env")
-	assert.Empty(t, err, err)
-	assert.IsType(t, &coreconfig.Config{}, conf)
-	assert.Equal(t, "zap", conf.Log.Provider, conf.Log.Provider)
+	require.NoError(t, err, "unexpected error: %v", err)
+	require.IsType(t, &coreconfig.Config{}, conf)
+	require.Equal(t, "zap", conf.Log.Provider, "unexpected log provider")
 }
 
 func TestConfigMustLoadEnvWithPanic(t *testing.T) {
-	assert.Panics(t, func() { MustLoadEnvWithFilename("./mocking/notfound.env") }, "The code did not panic")
+	require.Panics(
+		t,
+		func() { MustLoadEnvWithFilename("./mocking/notfound.env") },
+		"The code did not panic as expected",
+	)
 }
 
-func TestConfigLoadEnvFailedFailed(t *testing.T) {
+func TestConfigLoadEnvFailed(t *testing.T) {
 	conf, err := LoadEnvWithFilename("./mocking/notfound.env")
-	assert.NotEmpty(t, err, err)
-	assert.IsType(t, &coreconfig.Config{}, conf)
-	assert.Empty(t, conf)
+	require.Error(t, err, "expected an error but got none")
+	require.Nil(t, conf, "expected config to be nil when loading fails")
 }

@@ -4,16 +4,21 @@ import (
 	"crypto/rand"
 	"fmt"
 	"math/big"
+	"strings"
 
+	"github.com/bxcodec/faker/v3"
+	fakerTag "github.com/bxcodec/faker/v3"
 	"github.com/lithammer/shortuuid/v3"
 
-	"github.com/hadenlabs/terraform-module-template/internal/errors"
+	"github.com/hadenlabs/terraform-oci/internal/errors"
 )
 
 type FakeUser interface {
-	Name() string      // username fake
-	FirstName() string // FirstName User
-	Path() string      // Path of User
+	UserName() string // username
+	Email() string    // email
+	FullName() string // fullName
+	LastName() string // LastName
+	Password() string // password
 }
 
 type fakeUser struct{}
@@ -23,33 +28,30 @@ func User() FakeUser {
 }
 
 var (
-	names      = []string{"user1", "user2"}
-	firstNames = []string{"luis", "juan"}
-	paths      = []string{"/systems/", "/users/"}
+	userNames = []string{"optimusprime", "wheeljack", "bumblebee"}
 )
 
-func (n fakeUser) Name() string {
-	num, err := rand.Int(rand.Reader, big.NewInt(int64(len(names))))
+func (n fakeUser) UserName() string {
+	num, err := rand.Int(rand.Reader, big.NewInt(int64(len(userNames))))
 	if err != nil {
 		panic(errors.New(errors.ErrorUnknown, err.Error()))
 	}
-	nameuuid := fmt.Sprintf("%s-%s", names[num.Int64()], shortuuid.New())
-	return nameuuid
+	nameuuid := fmt.Sprintf("%s-%s", userNames[num.Int64()], shortuuid.New())
+	return strings.ToLower(nameuuid)
 }
 
-func (n fakeUser) FirstName() string {
-	num, err := rand.Int(rand.Reader, big.NewInt(int64(len(firstNames))))
-	if err != nil {
-		panic(errors.New(errors.ErrorUnknown, err.Error()))
-	}
-
-	return firstNames[num.Int64()]
+func (n fakeUser) Email() string {
+	return fakerTag.Email()
 }
 
-func (n fakeUser) Path() string {
-	num, err := rand.Int(rand.Reader, big.NewInt(int64(len(paths))))
-	if err != nil {
-		panic(errors.New(errors.ErrorUnknown, err.Error()))
-	}
-	return paths[num.Int64()]
+func (n fakeUser) Password() string {
+	return shortuuid.New()
+}
+
+func (n fakeUser) FullName() string {
+	return faker.Name()
+}
+
+func (n fakeUser) LastName() string {
+	return faker.LastName()
 }

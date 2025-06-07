@@ -1,10 +1,3 @@
-# How to use this project
+# How to use this Module
 
-```hcl
-  module "main" {
-    source  = "hadenlabs/terraform-module-template/aws"
-    version = "0.0.0"
-  }
-```
-
-Full working examples can be found in [examples](./examples) folder.
+Full working modules can be found in [modules](/modules) folder.

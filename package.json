@@ -1,11 +1,11 @@
 {
-  "name": "@hadenlabs/terraform-module-template",
+  "name": "@hadenlabs/terraform-oci",
   "version": "0.0.0",
-  "description": "terraform-module-template",
+  "description": "terraform-oci",
   "author": "Luis Mayta <slovacus@gmail.com>",
   "license": "LGPL-3.0",
   "engines": {
-    "node": ">=14"
+    "node": ">=18"
   },
   "scripts": {
     "build": "tsc -p ./",
@@ -23,7 +23,7 @@
     "ncu": "ncu -u --target minor",
     "ncu:patch": "ncu -u --target patch",
     "prebuild": "mkdirp build && yarn run clean:build:all",
-    "prettier": "prettier --config=.ci/linters/prettier.config.js --ignore-path=.ci/linters/.prettierignore --list-different",
+    "prettier": "prettier --config=.ci/linters/prettier.config.cjs --ignore-path=.ci/linters/.prettierignore --list-different",
     "prettier:fix": "yarn prettier:lint --write=true",
     "prettier:lint": "yarn prettier '**/*.{js?(on),ts?(x),scss,md,y?(a)ml,gql,graphql?(s),less,mjml}' --write=false"
   },
@@ -33,7 +33,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hadenlabs/terraform-module-template.git"
+    "url": "git+https://github.com/hadenlabs/terraform-oci.git"
   },
   "keywords": [
     "hadenlabs",
@@ -42,9 +42,9 @@
     "tool"
   ],
   "bugs": {
-    "url": "https://github.com/hadenlabs/terraform-module-template/issues"
+    "url": "https://github.com/hadenlabs/terraform-oci/issues"
   },
-  "homepage": "https://github.com/hadenlabs/terraform-module-template#readme",
+  "homepage": "https://github.com/hadenlabs/terraform-oci#readme",
   "dependencies": {},
   "devDependencies": {
     "@types/rimraf": "^3.0.2",
@@ -65,5 +65,5 @@
     "ts-node": "^10.0.0",
     "typescript": "^4.3.5"
   },
-  "prettier": "./.ci/linters/prettier.config.js"
+  "prettier": ".ci/linters/prettier.config.cjs"
 }

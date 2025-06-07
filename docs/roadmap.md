@@ -1,6 +1,6 @@
 <!-- Space: Projects -->
-<!-- Parent: TerraformModuleTemplate -->
-<!-- Title: Roadmap TerraformModuleTemplate -->
+<!-- Parent: TerraformOci -->
+<!-- Title: Roadmap TerraformOci -->
 <!-- Label: Roadmap -->
 <!-- Include: disclaimer.md -->
 <!-- Include: ac:toc -->
@@ -29,7 +29,7 @@
 
 The Roadmap is a list of all the things we're working on for the year.
 
-You can see the corresponding projects on [terraform-module-template](https://github.com/hadenlabs/terraform-module-template)
+You can see the corresponding projects on [terraform-oci](https://github.com/hadenlabs/terraform-oci)
 
 ## Legend
 
@@ -40,18 +40,4 @@ You can see the corresponding projects on [terraform-module-template](https://gi
 
 ## Epics
 
-### Agosto 2021
-
-### September 2021
-
-### October 2021
-
-### November 2021
-
-### December 2021
-
 ## Long Lived Initiatives
-
-These projects don't have an end date. They are something we'll continuously work towards.
-
-- [Better Docs](https://hadenlabs.atlassian.net/wiki)

@@ -1,9 +1,9 @@
 # This is an example goreleaser.yaml file with some sane defaults.
 # Make sure to check the documentation at http://goreleaser.com
-project_name: terraform-module-template
+project_name: terraform-oci
 env:
   - GO111MODULE=on
-  - REPO=github.com/hadenlabs/terraform-module-template
+  - REPO=github.com/hadenlabs/terraform-oci
 before:
   hooks:
     - go mod download
@@ -39,7 +39,7 @@ archives:
     builds:
       - default
     wrap_in_directory: true
-    name_template: '{{.ProjectName}}-{{.Os}}-{{.Arch}}'
+    name_template: "{{.ProjectName}}-{{.Os}}-{{.Arch}}"
     format: tar.gz
     format_overrides:
       - goos: windows
@@ -52,22 +52,22 @@ archives:
       - systemd/*
 # https://goreleaser.com/snapshots/
 snapshot:
-  name_template: 'dev@{{.ShortCommit}}'
+  name_template: "dev@{{.ShortCommit}}"
 
 # https://goreleaser.com/checksum/
 checksum:
-  name_template: '{{ .ProjectName }}_{{ .Version }}_checksums.txt'
+  name_template: "{{ .ProjectName }}_{{ .Version }}_checksums.txt"
   algorithm: sha256
 changelog:
   sort: asc
   filters:
     exclude:
-      - '^docs:'
-      - '^test:'
+      - "^docs:"
+      - "^test:"
 release:
   github:
     owner: hadenlabs
-    name: terraform-module-template
+    name: terraform-oci
   draft: true
   prerelease: auto
-  name_template: '{{.ProjectName}}-v{{.Version}}-{{.ShortCommit}}-{{.Date}}'
+  name_template: "{{.ProjectName}}-v{{.Version}}-{{.ShortCommit}}-{{.Date}}"

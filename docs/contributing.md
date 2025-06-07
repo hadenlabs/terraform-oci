@@ -8,24 +8,24 @@
 
 # How To Contribute
 
-Contributions to terraform-module-template are welcome.
+Contributions to terraform-oci are welcome.
 
 Feel free to use all of the contribution options:
 
-- Contribute to terraform-module-template repositories on [GitHub](https://github.com/hadenlabs/terraform-module-template). See [Git flow](./contribute/github-flow.md).
+- Contribute to terraform-oci repositories on [GitHub](https://github.com/hadenlabs/terraform-oci). See [Github flow](./contribute/github-flow.md).
 
 ## Getting Started
 
 ### Development
 
-In general, MRs are welcome. We follow the typical "fork-and-pull" [Git flow](./contribute/github-flow.md).
+In general, MRs are welcome. We follow the typical "fork-and-pull" [Github Flow](./contribute/github-flow.md).
 
-1.  **Fork** the repo on Github
-2.  **Clone** the project to your own machine
-3.  **Commit** changes to your own branch using [Git flow](./contribute/github-flow.md)
-4.  **Push** your work back up to your fork
+1. **Fork** the repo on GitHub
+2. **Clone** the project to your own machine
+3. **Commit** changes to your own branch using [Github Flow](./contribute/github-flow.md)
+4. **Push** your work back up to your fork
 
-5.  Submit a **Pull Request** so that we can review your changes
+5. Submit a **Pull Request** so that we can review your changes
 
 **NOTE:** Be sure to rebase the latest changes from "upstream" before making a pull request!
 
@@ -69,11 +69,11 @@ Examples commit messages:
 
 ### Branches
 
-See [Git flow](./contribute/github-flow.md).
+See [Github Flow](./contribute/github-flow.md).
 
 ### Documentation
 
-Documentation is a part of the terraform-module-template code base. You can find the documentation files in the `doc/` subdirectory of the [main repository](https://github.com/hadenlabs/terraform-module-template). This means that the contribution process is the same for both the source code and documentation.
+Documentation is a part of the terraform-oci code base. You can find the documentation files in the `doc/` subdirectory of the [main repository](https://github.com/hadenlabs/terraform-oci). This means that the contribution process is the same for both the source code and documentation.
 
 ### Testing
 
@@ -81,15 +81,15 @@ See [Testing](./testing.md).
 
 ### Code Submission
 
-1.  See if a [Pull Request](https://github.com/hadenlabs/terraform-module-template/pulls) exists
-    - Add some comments or review the code to help it along
-    - Don\'t be afraid to comment when logic needs clarification
-2.  Create a Fork and open a [Pull Request](https://github.com/hadenlabs/terraform-module-template/pulls) if needed
+1. See if a [Pull Request](https://github.com/hadenlabs/terraform-oci/pulls) exists
+   - Add some comments or review the code to help it along
+   - Don\'t be afraid to comment when logic needs clarification
+2. Create a Fork and open a [Pull Request](https://github.com/hadenlabs/terraform-oci/pulls) if needed
 
 ### Code Review
 
 - Anyone can review code
-- Any [Pull Request](https://github.com/hadenlabs/terraform-module-template/pulls) should be closed or merged within a week
+- Any [Pull Request](https://github.com/hadenlabs/terraform-oci/pulls) should be closed or merged within a week
 
 ### Code Acceptance
 

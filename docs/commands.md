@@ -1,35 +1,106 @@
 <!-- Space: Projects -->
-<!-- Parent: TerraformModuleTemplate -->
-<!-- Title: Commands TerraformModuleTemplate -->
-<!-- Label: TerraformModuleTemplate -->
+<!-- Parent: TerraformOci -->
+<!-- Title: Commands TerraformOci -->
+<!-- Label: TerraformOci -->
 <!-- Label: Project -->
 <!-- Label: Commands -->
 <!-- Include: disclaimer.md -->
 <!-- Include: ac:toc -->
 
-## Commands
+# Commands
+
+## Poetry
+
+## Taskfile
+
+### Confluence
+
+#### Sync Markdown with confluence
+
+```{.bash}
+task confluence:sync:all
+```
+
+### Python
+
+#### Format syntax code python with [black](https://github.com/psf/black)
+
+```{.bash}
+task python:fmt -- {{file_name or path}}
+```
+
+### Diagrams
+
+#### Publish diagrams
+
+```{.bash}
+task diagrams:publish
+```
+
+### Mkdocs
+
+#### Generate Website
+
+```{.bash}
+task docs:build
+```
+
+### Changelog
+
+#### Generate Changelog Next Tag
+
+```{.bash}
+task changelog:next APP_TAG={{tag name}}
+```
+
+#### Parameters
+
+| Name     | Description   | sample | Required |
+| -------- | ------------- | ------ | :------: |
+| tag name | Name next tag | 0.1.0  |   yes    |
+
+### Version
+
+#### Version Major
+
+```{.bash}
+task version:major
+```
+
+#### Version Minor
+
+```{.bash}
+task version:minor
+```
+
+#### Version Patch
+
+```{.bash}
+task version:patch
+```
+
+## Infrastructure
 
 ### Terragrunt
 
-| Field  |        Description        |
-| ------ | :-----------------------: |
-| REGION |       region of aws       |
-| STAGE  | stage or name environment |
+| Field |        Description        |
+| ----- | :-----------------------: |
+| STAGE | stage or name environment |
 
 ```bash
-task terragrunt:init REGION=us-east-1 STAGE=core
+task terragrunt:init STAGE=core
 ```
 
 ```bash
-task terragrunt:apply REGION=us-east-1 STAGE=core
+task terragrunt:apply STAGE=core
 ```
 
 ```bash
-task terragrunt:plan REGION=us-east-1 STAGE=core
+task terragrunt:plan STAGE=core
 ```
 
 ```bash
-task terragrunt:destroy REGION=us-east-1 STAGE=core
+task terragrunt:destroy STAGE=core
 ```
 
 #### Import

@@ -12,17 +12,11 @@
 
   -->
 
-[![Latest Release](https://img.shields.io/github/release/hadenlabs/terraform-module-template)](https://github.com/hadenlabs/terraform-module-template/releases) [![Lint](https://img.shields.io/github/workflow/status/hadenlabs/terraform-module-template/lint-code)](https://github.com/hadenlabs/terraform-module-template/actions?workflow=lint-code) [![CI](https://img.shields.io/github/workflow/status/hadenlabs/terraform-module-template/ci)](https://github.com/hadenlabs/terraform-module-template/actions?workflow=ci) [![Test](https://img.shields.io/github/workflow/status/hadenlabs/terraform-module-template/test)](https://github.com/hadenlabs/terraform-module-template/actions?workflow=test) [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit) [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow)](https://conventionalcommits.org) [![KeepAChangelog](https://img.shields.io/badge/changelog-Keep%20a%20Changelog%20v1.0.0-orange)](https://keepachangelog.com) [![Terraform Version](https://img.shields.io/badge/terraform-1.x%20|%200.15%20|%200.14%20|%200.13%20|%200.12.20+-623CE4.svg?logo=terraform)](https://github.com/hashicorp/terraform/releases)
+[![Latest Release](https://img.shields.io/github/release/hadenlabs/terraform-oci)](https://github.com/hadenlabs/terraform-oci/releases) [![Lint](https://img.shields.io/github/workflow/status/hadenlabs/terraform-oci/lint-code)](https://github.com/hadenlabs/terraform-oci/actions?workflow=lint-code) [![CI](https://img.shields.io/github/workflow/status/hadenlabs/terraform-oci/ci)](https://github.com/hadenlabs/terraform-oci/actions?workflow=ci) [![Test](https://img.shields.io/github/workflow/status/hadenlabs/terraform-oci/test)](https://github.com/hadenlabs/terraform-oci/actions?workflow=test) [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit) [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow)](https://conventionalcommits.org) [![KeepAChangelog](https://img.shields.io/badge/changelog-Keep%20a%20Changelog%20v1.0.0-orange)](https://keepachangelog.com) [![Terraform Version](https://img.shields.io/badge/terraform-1.x%20|%200.15%20|%200.14%20|%200.13%20|%200.12.20+-623CE4.svg?logo=terraform)](https://github.com/hashicorp/terraform/releases)
 
-# terraform-module-template
+# terraform-oci
 
-terraform-module-template for project
-
-### Replace name project to New Project
-
-```bash
-  agr 'terraform-module-template' 'new-project'
-```
+terraform-oci for project
 
 ## Requirements
 
@@ -33,33 +27,20 @@ This is a list of plugins that need to be installed previously to enjoy all the 
 - [python](https://www.python.org)
 - [taskfile](https://github.com/go-task/task)
 
-## Usage
-
-# How to use this project
-
-```hcl
-  module "main" {
-    source  = "hadenlabs/terraform-module-template/aws"
-    version = "0.0.0"
-  }
-```
-
-Full working examples can be found in [examples](./examples) folder.
-
 ## Examples
 
 <!-- Space: Projects -->
-<!-- Parent: TerraformModuleTemplate -->
-<!-- Title: Examples TerraformModuleTemplate -->
+<!-- Parent: TerraformOci -->
+<!-- Title: Examples TerraformOci -->
 <!-- Label: Examples -->
 <!-- Include: ./../disclaimer.md -->
 <!-- Include: ac:toc -->
 
-### common
+## Common
 
 ```hcl
   module "main" {
-    source  = "hadenlabs/terraform-module-template/aws"
+    source  = "hadenlabs/terraform-oci/aws"
     version = "0.0.0"
   }
 ```
@@ -98,9 +79,9 @@ No outputs.
 
 ## Help
 
-**Got a question?**
+### Got a question?
 
-File a GitHub [issue](https://github.com/hadenlabs/terraform-module-template/issues).
+File a GitHub [issue](https://github.com/hadenlabs/terraform-oci/issues).
 
 ## Contributing
 
@@ -123,7 +104,7 @@ Using the given version number of `MAJOR.MINOR.PATCH`, we apply the following co
 
 ## Copyright
 
-Copyright © 2018-2022 [Hadenlabs](https://hadenlabs.com)
+Copyright © 2018-2025 [Hadenlabs](https://hadenlabs.com)
 
 ## Trademarks
 
@@ -133,6 +114,6 @@ All other trademarks referenced herein are the property of their respective owne
 
 The code and styles are licensed under the LGPL-3.0 license [See project license.](LICENSE).
 
-## Don't forget to 🌟 Star 🌟 the repo if you like terraform-module-template
+## Don't forget to 🌟 Star 🌟 the repo if you like terraform-oci
 
-[Your feedback is appreciated](https://github.com/hadenlabs/terraform-module-template/issues)
+[Your feedback is appreciated](https://github.com/hadenlabs/terraform-oci/issues)

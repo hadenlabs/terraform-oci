@@ -1,23 +1,29 @@
 package faker
 
 import (
-	"testing"
-
 	"strings"
+	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
 
-func TestFakeUserName(t *testing.T) {
-	name := User().Name()
-	namePrefix := strings.Split(name, "-")[0]
-	assert.Contains(t, names, namePrefix, namePrefix)
+func TestFakeUserUserName(t *testing.T) {
+	userNameFake := User().UserName()
+	prefix := strings.Split(userNameFake, "-")[0]
+	assert.Contains(t, userNames, prefix, prefix)
 }
 
-func TestFakeUserFirstName(t *testing.T) {
-	assert.Contains(t, firstNames, User().FirstName())
+func TestFakeUserPassword(t *testing.T) {
+	password := User().Password()
+	assert.NotEmpty(t, password, password)
 }
 
-func TestFakeUserPath(t *testing.T) {
-	assert.Contains(t, paths, User().Path())
+func TestFakeUserEmail(t *testing.T) {
+	email := User().Email()
+	assert.NotEmpty(t, email, email)
+}
+
+func TestFakeUserFullName(t *testing.T) {
+	fullName := User().FullName()
+	assert.NotEmpty(t, fullName, fullName)
 }
