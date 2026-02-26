@@ -38,11 +38,10 @@ This is a list of plugins that need to be installed previously to enjoy all the 
 
 ## Common
 
-```hcl
-  module "main" {
-    source  = "hadenlabs/terraform-oci/aws"
-    version = "0.0.0"
-  }
+### Install Dependencies
+
+```bash
+task setup
 ```
 
  <!-- markdown-link-check-disable -->
@@ -104,7 +103,7 @@ Using the given version number of `MAJOR.MINOR.PATCH`, we apply the following co
 
 ## Copyright
 
-Copyright © 2018-2025 [Hadenlabs](https://hadenlabs.com)
+Copyright © 2018-2026 [Hadenlabs](https://hadenlabs.com)
 
 ## Trademarks
 

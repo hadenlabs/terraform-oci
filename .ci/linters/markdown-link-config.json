@@ -2,10 +2,7 @@
   "baseUrl": "https://github.com/hadenlabs/terraform-oci",
   "ignorePatterns": [
     {
-      "pattern": "^https://github.com/hadenlabs/terraform-oci/compare"
-    },
-    {
-      "pattern": "^https://hadenlabs.com"
+      "pattern": "^https://github.com/hadenlabs/terraform-oci"
     },
     {
       "pattern": "^mailto:.*@hadenlabs\\.com"
