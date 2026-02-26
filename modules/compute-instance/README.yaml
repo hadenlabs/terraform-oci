@@ -1,0 +1,36 @@
+---
+#
+# This is the canonical configuration for the `README.md`
+# Run `make readme` to rebuild the `README.md`
+#
+
+# Name of this project
+name: email
+
+# Tags of this project
+tags:
+  - cloudflare
+  - terraform
+  - email
+
+# License of this project
+license: "LGPL-3.0"
+
+github_repo: hadenlabs/terraform-cloudflare
+
+# Badges to display
+badges:
+  - name: Terraform Version
+    image: https://img.shields.io/badge/terraform-1.x%20|%200.15%20|%200.14%20|%200.13%20|%200.12.20+-623CE4.svg?logo=terraform
+    url: https://github.com/hashicorp/terraform/releases
+
+# Short description of this project
+description: |-
+  Module Record Cloudflare
+
+usages:
+  - modules/email/docs/usage.md
+
+# Modules
+include:
+  - modules/email/docs/include/terraform.md
