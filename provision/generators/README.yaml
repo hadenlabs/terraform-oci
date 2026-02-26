@@ -60,7 +60,7 @@ description: |-
 
 requirements: |-
 
-  This is a list of plugins that need to be installed previously to enjoy all the goodies of this configuration:
+  This is a list of requirements that need to be installed previously to enjoy all the goodies of this configuration:
 
   - [gomplate](https://github.com/hairyhenderson/gomplate)
   - [terraform](https://github.com/hashicorp/terraform)
@@ -68,8 +68,8 @@ requirements: |-
   - [taskfile](https://github.com/go-task/task)
 
 # Modules
-# modules:
-#   - "Basic [Basic](modules/basic/README.md)"
+modules:
+  - "Compute [Realm](modules/compute/README.md)"
 
 examples:
   - "docs/examples/common.md"

@@ -110,7 +110,7 @@ msg-template={path}:{line}: [{msg_id}({symbol}), {obj}] {msg}
 ignore-mixin-members=yes
 
 # List of module names for which member attributes should not be checked
-# (useful for modules/projects where namespaces are manipulated during runtime
+# (useful for modules/computes where namespaces are manipulated during runtime
 # and thus extisting member attributes cannot be deduced by static analysis
 ignored-modules=
 

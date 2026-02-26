@@ -47,6 +47,8 @@ includes:
   terraform:
     taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/refs/heads/main/src/terraform/Taskfile.yml"
 
+  module_compute: ./modules/compute/Taskfile.yml
+
 env:
   DOCKER:
     sh: docker --version 2> /dev/null || echo "not exist"
@@ -139,6 +141,10 @@ tasks:
     desc: Generate Readme
     silent: true
     cmds:
+      - task: terraform:doc
+        vars:
+          TERRAFORM_PATH: modules/compute
+      - task: module_compute:readme
       - >-
         gomplate --file {{.README_TEMPLATE}}
         --out {{.README_FILE}}
