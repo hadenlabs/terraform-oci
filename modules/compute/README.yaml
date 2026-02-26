@@ -1,0 +1,36 @@
+---
+#
+# This is the canonical configuration for the `README.md`
+# Run `make readme` to rebuild the `README.md`
+#
+
+# Name of this user
+name: compute
+
+# Tags of this user
+tags:
+  - oci
+  - terraform
+  - compute
+
+# License of this user
+license: "LGPL-3.0"
+
+github_repo: hadenlabs/terraform-oci
+
+# Badges to display
+badges:
+  - name: Terraform Version
+    image: https://img.shields.io/badge/terraform-1.x%20|%200.15%20|%200.14%20|%200.13%20|%200.12.20+-623CE4.svg?logo=terraform
+    url: https://github.com/hashicorp/terraform/releases
+
+# Short description of this user
+description: |-
+  Module compute oc
+
+usages:
+  - modules/compute/docs/usage.md
+
+# Modules
+include:
+  - modules/compute/docs/include/terraform.md
