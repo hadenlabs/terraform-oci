@@ -80,6 +80,9 @@ vars:
   GRADLE_VERSION: 8.4.0
   GOLANG_VERSION: 1.22.4
   GIT_IGNORES: python,node,go,zsh,sonar,java,maven,intellij+all,terraform,linux
+  COMMIT: $(git rev-parse HEAD)
+  RELEASE_DIR: ./release
+  DATE: $(date +%s)
   GOLANGCI_VERSION: 1.42.0
   TERRAFORM_VERSION: 1.11.4
   README_FILE: README.md
@@ -90,6 +93,7 @@ vars:
     .secrets
     public
     TMP_CHANGELOG.md
+    .task
     .terraform.lock.hcl
     build
     .task
@@ -137,7 +141,6 @@ tasks:
       - go:check
 
   readme:
-    run: once
     desc: Generate Readme
     silent: true
     cmds:
@@ -197,6 +200,11 @@ tasks:
     cmds:
       - task: go:mockery
       - task: go:generate
+
+  validate:
+    desc: "Run validate on all files"
+    cmds:
+      - uv run pre-commit run --all-files
 
   help:
     cmds:
