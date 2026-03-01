@@ -14,10 +14,10 @@ Este prompt es exclusivamente para agregar tests.
 
 NO debes modificar:
 
-- main.tf
-- variables.tf
-- outputs.tf
-- versions.tf
+- modules/compartment/main.tf
+- modules/compartment/variables.tf
+- modules/compartment/outputs.tf
+- modules/compartment/versions.tf
 - README.yaml
 - README.md
 - Taskfile.yml
@@ -27,7 +27,7 @@ NO debes modificar:
 
 # Arquitectura de Testing del Proyecto
 
-El proyecto usa estrictamente:
+El proyecto usa:
 
 ## 1. Terratest
 
@@ -43,9 +43,15 @@ El proyecto usa estrictamente:
 
 - internal/app/external/faker/
 
-- No se permite introducir nuevas dependencias.
-- No se permite crear nuevos helpers.
-- No se permite modificar testutil o faker.
+Se permite:
+
+- Crear nuevos helpers en internal/testutil/oci/
+- Extender testutil siguiendo el mismo patrón usado por compute
+
+No se permite:
+
+- Introducir dependencias externas nuevas
+- Modificar la arquitectura de testing existente
 
 ---
 
@@ -72,39 +78,47 @@ Debe replicarse exactamente la estructura utilizada en:
 
 modules/compute/test/compute-basic/
 
-La estructura final debe ser:
+Estructura final:
 
-modules/compartment/ └── test/ ├── compartment_basic_test.go └── compartment-basic/ ├── main.tf ├── variables.tf ├── outputs.tf └── versions.tf
+```bash
+modules/compartment/
+  └── test/
+    ├── compartment_basic_test.go
+    └── compartment-basic/
+      ├── main.tf
+      ├── variables.tf
+      ├── outputs.tf
+      └── versions.tf
+```
 
-- No simplificar la carpeta `compartment-basic`.
-- No dejar solo main.tf.
-- No agregar data.tf si compute no lo usa.
-- La estructura debe ser idéntica a compute-basic.
+La estructura debe ser idéntica a compute-basic.
 
 ---
 
-# Generación de Datos (Regla Estricta)
+# Generación de Datos
 
-Debe replicarse exactamente el patrón de generación de datos utilizado en compute.
+Debe crearse una función:
 
-Debe usarse:
+internal/testutil/oci/compartment.go
 
-- internal/testutil/oci para obtener:
-  - compartment_id base para crear el nuevo compartment
+Con la función:
 
-- internal/app/external/faker para generar:
-  - name único por ejecución
+    func NewCompartment() *Compartment
+
+La estructura debe contener:
+
+- Name
+- Description
+
+Esta función debe:
+
+- Usar internal/app/external/faker para generar:
+  - name único
   - description dinámico
+- Obtener ParentCompartmentID desde la configuración base utilizada por compute
 
-No se permite:
-
-- Hardcodear strings
-- Inventar funciones inexistentes (ej: NewCompartment si no existe)
-- Crear nuevos helpers
-- Modificar faker
-- Modificar testutil
-
-Si compute usa un objeto base (ej: oci.NewCompute()) para obtener compartment_id, debe replicarse el mismo patrón para obtener el compartment_id requerido.
+- No se permite hardcodear valores.
+- No se permite modificar faker.
 
 ---
 
@@ -119,9 +133,7 @@ El test debe:
 - Ejecutar terraform.InitAndApply
 - Validar outputs con terraform.Output
 - Usar assert.Equal
-- Usar assert.NotEmpty cuando corresponda
-
-No usar otros frameworks.
+- Usar assert.NotEmpty
 
 ---
 
@@ -129,15 +141,14 @@ No usar otros frameworks.
 
 Requeridas:
 
-- compartment_id
-- name
-- description
+- name (NewCompartment().Name)
+- description (NewCompartment().Description)
 
-Opcionales (si el módulo los soporta):
+Opcionales:
 
-- enable_delete
-- freeform_tags
-- defined_tags
+- enable_delete (true)
+- freeform_tags ({})
+- defined_tags ({})
 
 Configuración obligatoria:
 
@@ -153,32 +164,27 @@ Debe:
 
   source = "../../"
 
-- Pasar todas las variables recibidas
+- Pasar todas las variables
 - No crear recursos adicionales
-- No usar otros módulos
 - No declarar proveedores adicionales
-- Solo probar el módulo
 
 Debe exponer como outputs:
 
 - module_enabled
-- id
+- compartment_id
 - name
 
-No agregar outputs no existentes en el módulo.
+No agregar outputs inexistentes.
 
 ---
 
 # Validaciones Obligatorias
 
-El test debe validar estrictamente:
+El test debe validar:
 
 1. module_enabled == "true"
-2. id no vacío
-3. name igual al generado por faker
-
-- No validar comportamiento no implementado.
-- No validar lógica interna no expuesta por outputs.
+2. compartment_id no vacío
+3. name igual al generado por NewCompartment()
 
 ---
 
@@ -188,15 +194,14 @@ El agente debe responder en este orden:
 
 1. Estructura final del test
 2. Contenido completo de:
+   - internal/testutil/oci/compartment.go
    - compartment_basic_test.go
    - compartment-basic/main.tf
    - compartment-basic/variables.tf
    - compartment-basic/outputs.tf
    - compartment-basic/versions.tf
-3. Checklist de cumplimiento de arquitectura de testing
+3. Checklist de cumplimiento
 4. Comandos para ejecutar el test
-
-Cada archivo debe mostrarse en bloque de código separado con lenguaje correcto.
 
 - No resumir código.
 - No omitir archivos.
