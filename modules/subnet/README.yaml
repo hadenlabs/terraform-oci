@@ -1,0 +1,53 @@
+---
+#
+# This is the canonical configuration for the `README.md`
+# Run `make readme` to rebuild the `README.md`
+#
+
+# Name of this user
+name: subnet
+
+# Tags of this user
+tags:
+  - oci
+  - terraform
+  - subnet
+
+# License of this user
+license: "LGPL-3.0"
+
+github_repo: hadenlabs/terraform-oci
+
+# Badges to display
+badges:
+  - name: Terraform Version
+    image: https://img.shields.io/badge/terraform-1.x%20|%200.15%20|%200.14%20|%200.13%20|%200.12.20+-623CE4.svg?logo=terraform
+    url: https://github.com/hashicorp/terraform/releases
+
+# Short description of this user
+description: |-
+  This module manages Oracle Cloud Infrastructure (OCI) Subnets. A subnet is a subdivision of a Virtual Cloud Network (VCN) that contains a contiguous range of IP addresses. Subnets enable you to group related resources and apply network policies at a granular level.
+
+  Key concepts:
+  - **Hierarchical relationship**: VCN → Subnet → Resources
+  - **Public vs Private subnets**: Controlled by `prohibit_public_ip_on_vnic` parameter
+  - **Route Tables**: Control traffic routing between subnets and to external networks
+  - **Security Lists**: Stateful firewall rules at the subnet level
+  - **Network Security Groups (NSG)**: Stateful firewall rules at the instance level
+  - **Regional vs AD-specific**: Subnets can be regional or tied to a specific Availability Domain
+  - **CIDR rules**: Subnet CIDR must be within VCN CIDR and not overlap with other subnets
+  - **DNS integration**: DNS labels enable FQDN resolution for instances
+
+  Important considerations:
+  - Each subnet must have a unique CIDR block within its VCN
+  - Subnets can be associated with route tables and security lists
+  - Network Security Groups provide additional security at the instance level
+  - Regional subnets span all Availability Domains in the region
+  - AD-specific subnets are tied to a single Availability Domain
+
+usages:
+  - modules/subnet/docs/usage.md
+
+# Modules
+include:
+  - modules/subnet/docs/include/terraform.md

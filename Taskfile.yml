@@ -50,6 +50,7 @@ includes:
   module_compute: ./modules/compute/Taskfile.yml
   module_vcn: ./modules/vcn/Taskfile.yml
   module_compartment: ./modules/compartment/Taskfile.yml
+  module_subnet: ./modules/subnet/Taskfile.yml
 
 env:
   DOCKER:
@@ -158,6 +159,10 @@ tasks:
         vars:
           TERRAFORM_PATH: modules/vcn
       - task: module_vcn:readme
+      - task: terraform:doc
+        vars:
+          TERRAFORM_PATH: modules/subnet
+      - task: module_subnet:readme
       - >-
         gomplate --file {{.README_TEMPLATE}}
         --out {{.README_FILE}}
