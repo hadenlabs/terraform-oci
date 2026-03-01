@@ -19,4 +19,10 @@ func Generator() {
 	_ = fakerTag.AddProvider("UserEmailFaker", func(v reflect.Value) (interface{}, error) {
 		return User().Email(), nil
 	})
+	_ = fakerTag.AddProvider("CompartmentNameFaker", func(v reflect.Value) (interface{}, error) {
+		return Compartment().Name(), nil
+	})
+	_ = fakerTag.AddProvider("CompartmentDescriptionFaker", func(v reflect.Value) (interface{}, error) {
+		return Compartment().Description(), nil
+	})
 }

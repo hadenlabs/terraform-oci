@@ -17,3 +17,13 @@ func TestNewCompute(t *testing.T) {
 	assert.NotEmpty(t, compute.DisplayName, "DisplayName should be faker-generated")
 	assert.NotEmpty(t, compute.SshPublicKey, "SshPublicKey should be faker-generated")
 }
+
+func TestNewCompartment(t *testing.T) {
+	t.Parallel()
+
+	compartment := NewCompartment()
+
+	// All fields should be faker-generated
+	assert.NotEmpty(t, compartment.Name, "Name should be faker-generated")
+	assert.NotEmpty(t, compartment.Description, "Description should be faker-generated")
+}

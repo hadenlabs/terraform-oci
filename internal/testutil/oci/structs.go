@@ -23,3 +23,17 @@ func NewCompute() *Compute {
 		CompartmentID:      "ocid1.compartment.oc1..aaaaaaaacxgwuydfsi77ubuziuwiqrd72fg5ekbmsmm5o2nb3lejmeiycucq",
 	}
 }
+
+type Compartment struct {
+	Name        string
+	Description string
+}
+
+func NewCompartment() *Compartment {
+	fake := faker.Compartment()
+
+	return &Compartment{
+		Name:        fake.Name(),
+		Description: fake.Description(),
+	}
+}
