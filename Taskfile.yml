@@ -154,6 +154,10 @@ tasks:
         vars:
           TERRAFORM_PATH: modules/compartment
       - task: module_compartment:readme
+      - task: terraform:doc
+        vars:
+          TERRAFORM_PATH: modules/vcn
+      - task: module_vcn:readme
       - >-
         gomplate --file {{.README_TEMPLATE}}
         --out {{.README_FILE}}
@@ -211,6 +215,10 @@ tasks:
     desc: "Run validate on all files"
     cmds:
       - uv run pre-commit run --all-files
+      - task: go:fix
+      - task: go:lint
+      - task: terraform:fmt
+      - task: readme
 
   help:
     cmds:
