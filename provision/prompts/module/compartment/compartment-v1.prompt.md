@@ -192,6 +192,20 @@ Crear archivo vacío en:
 
 modules/compartment/docs/include/terraform.md
 
+## contributing.md
+
+Crear archivo en:
+
+modules/compartment/docs/contributing.md el contenido debe tener:
+
+```
+# How To Contribute
+
+Contributions to module user are welcome.
+
+See [Contributing](/docs/contributing.md)
+```
+
 ---
 
 # Especificación del Recurso
@@ -226,6 +240,7 @@ modules/compartment/
  ├── README.md  (generado automáticamente)
  ├── docs/
  │    ├── usage.md
+ │    ├── contributing.md
  │    └── include/
  │         └── terraform.md
  └── Taskfile.yml
