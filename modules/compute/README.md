@@ -98,7 +98,7 @@ File a GitHub [issue](https://github.com/hadenlabs/terraform-oci/issues).
 
 ## Contributing
 
-See [Contributing](/docs/contributing.md).
+See [Contributing](./docs/contributing.md).
 
 ## Module Versioning
 
