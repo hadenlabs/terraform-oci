@@ -48,6 +48,7 @@ includes:
     taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/refs/heads/main/src/terraform/Taskfile.yml"
 
   module_compute: ./modules/compute/Taskfile.yml
+  module_vcn: ./modules/vcn/Taskfile.yml
   module_compartment: ./modules/compartment/Taskfile.yml
 
 env:

@@ -1,0 +1,46 @@
+---
+#
+# This is the canonical configuration for the `README.md`
+# Run `make readme` to rebuild the `README.md`
+#
+
+# Name of this user
+name: vcn
+
+# Tags of this user
+tags:
+  - oci
+  - terraform
+  - vcn
+
+# License of this user
+license: "LGPL-3.0"
+
+github_repo: hadenlabs/terraform-oci
+
+# Badges to display
+badges:
+  - name: Terraform Version
+    image: https://img.shields.io/badge/terraform-1.x%20|%200.15%20|%200.14%20|%200.13%20|%200.12.20+-623CE4.svg?logo=terraform
+    url: https://github.com/hashicorp/terraform/releases
+
+# Short description of this user
+description: |-
+  Module for managing Oracle Cloud Infrastructure Virtual Cloud Network (VCN).
+
+  A Virtual Cloud Network (VCN) is the fundamental building block for networking in OCI. It provides:
+  - Logical network boundary within a region
+  - Support for multiple CIDR blocks (non-overlapping)
+  - Public and private subnets
+  - Integration with Internet Gateway, NAT Gateway, and Dynamic Routing Gateway (DRG)
+  - DNS label for internal resolution
+  - IPv6 support (optional)
+
+  VCNs are regional resources and serve as the foundation for all network architecture in OCI.
+
+usages:
+  - modules/vcn/docs/usage.md
+
+# Modules
+include:
+  - modules/vcn/docs/include/terraform.md
