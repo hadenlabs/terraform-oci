@@ -18,9 +18,13 @@
 
 terraform-oci for project
 
+## Modules
+
+- Compute [Realm](modules/compute/README.md)
+
 ## Requirements
 
-This is a list of plugins that need to be installed previously to enjoy all the goodies of this configuration:
+This is a list of requirements that need to be installed previously to enjoy all the goodies of this configuration:
 
 - [gomplate](https://github.com/hairyhenderson/gomplate)
 - [terraform](https://github.com/hashicorp/terraform)
