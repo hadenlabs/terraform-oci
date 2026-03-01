@@ -8,7 +8,9 @@ Debes cumplir estrictamente todas las reglas definidas en `AGENTS.md`. Si existe
 
 El módulo `compartment` ya existe en:
 
+```
 modules/compartment/
+```
 
 Este prompt es exclusivamente para agregar tests.
 
@@ -27,7 +29,7 @@ NO debes modificar:
 
 # Arquitectura de Testing del Proyecto
 
-El proyecto usa:
+El proyecto usa estrictamente:
 
 ## 1. Terratest
 
@@ -46,12 +48,13 @@ El proyecto usa:
 Se permite:
 
 - Crear nuevos helpers en internal/testutil/oci/
-- Extender testutil siguiendo el mismo patrón usado por compute
+- Extender testutil siguiendo exactamente el patrón usado por compute
 
 No se permite:
 
 - Introducir dependencias externas nuevas
 - Modificar la arquitectura de testing existente
+- Modificar faker
 
 ---
 
@@ -59,11 +62,15 @@ No se permite:
 
 Crear un test básico de éxito para el módulo:
 
+```
 modules/compartment/
+```
 
 Debe replicar exactamente el patrón utilizado en:
 
+```
 modules/compute/test/
+```
 
 - No se permiten nuevas convenciones.
 - No simplificar estructura.
@@ -76,7 +83,9 @@ modules/compute/test/
 
 Debe replicarse exactamente la estructura utilizada en:
 
+```
 modules/compute/test/compute-basic/
+```
 
 Estructura final:
 
@@ -97,13 +106,15 @@ La estructura debe ser idéntica a compute-basic.
 
 # Generación de Datos
 
-Debe crearse una función:
+Debe crearse un helper:
 
 internal/testutil/oci/compartment.go
 
 Con la función:
 
+```go
     func NewCompartment() *Compartment
+```
 
 La estructura debe contener:
 
@@ -117,8 +128,10 @@ Esta función debe:
   - description dinámico
 - Obtener ParentCompartmentID desde la configuración base utilizada por compute
 
-- No se permite hardcodear valores.
-- No se permite modificar faker.
+No se permite:
+
+- Hardcodear valores estáticos
+- Introducir lógica externa nueva
 
 ---
 
@@ -162,7 +175,9 @@ Debe:
 
 - Instanciar el módulo usando:
 
-  source = "../../"
+```hcl
+source = "../../"
+```
 
 - Pasar todas las variables
 - No crear recursos adicionales
@@ -202,6 +217,12 @@ El agente debe responder en este orden:
    - compartment-basic/versions.tf
 3. Checklist de cumplimiento
 4. Comandos para ejecutar el test
+
+```bash
+task validate
+```
+
+Cada archivo debe mostrarse en bloque de código separado con lenguaje correcto.
 
 - No resumir código.
 - No omitir archivos.
