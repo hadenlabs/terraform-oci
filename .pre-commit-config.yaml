@@ -28,18 +28,19 @@ repos:
           - --ignore-words=.ci/linters/.codespell-ignores
         exclude: >
           (?x)^(
-            .+\.lock$|
-            .+\.mdx$|
-            .+\.node_modules\/.*$|
-            .+\.sops.*$|
-            .+\.vendor\/.*$|
-            AGENTS.md|
-            app/ia/datasets\/.*$|
-            CHANGELOG.md|
-            go.mod|
-            go.sum|
-            openapi.yaml|
-            pnpm-lock.yaml|
+          AGENTS.md|
+          CHANGELOG.md|
+          app/ia/datasets\/.*$|
+          go.mod|
+          go.sum|
+          openapi.yaml|
+          pnpm-lock.yaml|
+          provision/prompts\/.*$|
+          .+\.lock$|
+          .+\.mdx$|
+          .+\.node_modules\/.*$|
+          .+\.sops.*$|
+          .+\.vendor\/.*$|
           )$
   - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
     rev: v9.20.0

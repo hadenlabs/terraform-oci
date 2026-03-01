@@ -1,0 +1,49 @@
+---
+#
+# This is the canonical configuration for the `README.md`
+# Run `make readme` to rebuild the `README.md`
+#
+
+# Name of this module
+name: compartment
+
+# Tags of this module
+tags:
+  - oci
+  - terraform
+  - compartment
+  - identity
+  - organization
+
+# License of this module
+license: "LGPL-3.0"
+
+github_repo: hadenlabs/terraform-oci
+
+# Badges to display
+badges:
+  - name: Terraform Version
+    image: https://img.shields.io/badge/terraform-1.x%20|%200.15%20|%200.14%20|%200.13%20|%200.12.20+-623CE4.svg?logo=terraform
+    url: https://github.com/hashicorp/terraform/releases
+
+# Short description of this module
+description: |-
+  Terraform module for creating and managing Oracle Cloud Infrastructure (OCI) Compartments.
+
+  Compartments are fundamental building blocks in OCI that provide logical isolation and organization
+  of cloud resources. They enable:
+
+  - **Resource Organization**: Group related resources together for better management
+  - **IAM Boundaries**: Define access control policies at compartment level
+  - **Cost Tracking**: Monitor and allocate costs by compartment
+  - **Hierarchical Structure**: Create up to 6 levels of nested compartments
+
+  This module follows OCI best practices and includes support for compartment lifecycle management,
+  tagging, and integration with other OCI services.
+
+usages:
+  - modules/compartment/docs/usage.md
+
+# Modules
+include:
+  - modules/compartment/docs/include/terraform.md
