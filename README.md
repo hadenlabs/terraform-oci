@@ -22,6 +22,7 @@ terraform-oci for project
 
 - Compute [Compute](modules/compute/README.md)
 - Compartment [Compartment](modules/compartment/README.md)
+- VCN [VCN](modules/vcn/README.md)
 
 ## Requirements
 
