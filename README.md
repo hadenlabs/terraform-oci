@@ -20,7 +20,8 @@ terraform-oci for project
 
 ## Modules
 
-- Compute [Realm](modules/compute/README.md)
+- Compute [Compute](modules/compute/README.md)
+- Compartment [Compartment](modules/compartment/README.md)
 
 ## Requirements
 

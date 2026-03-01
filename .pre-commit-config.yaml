@@ -90,6 +90,7 @@ repos:
             .+\.docs/env-vars.md$|
             docs/env-vars.md$|
             docs\/include\/terraform.md$|
+            .+\.prompt\.md$|
             .+\.tpl.md$|
           )$
 

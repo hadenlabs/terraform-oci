@@ -48,6 +48,7 @@ includes:
     taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/refs/heads/main/src/terraform/Taskfile.yml"
 
   module_compute: ./modules/compute/Taskfile.yml
+  module_compartment: ./modules/compartment/Taskfile.yml
 
 env:
   DOCKER:
@@ -148,6 +149,10 @@ tasks:
         vars:
           TERRAFORM_PATH: modules/compute
       - task: module_compute:readme
+      - task: terraform:doc
+        vars:
+          TERRAFORM_PATH: modules/compartment
+      - task: module_compartment:readme
       - >-
         gomplate --file {{.README_TEMPLATE}}
         --out {{.README_FILE}}
