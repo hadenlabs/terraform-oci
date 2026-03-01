@@ -1,5 +1,7 @@
----
 version: "3"
+
+vars:
+  MODULE_PATH: modules/compute
 
 tasks:
   readme:
@@ -9,6 +11,13 @@ tasks:
     cmds:
       - >-
         gomplate --file {{.README_TEMPLATE}}
-        --out modules/compute/README.md
-        --datasource config=modules/compute/README.yaml
+        --out {{.MODULE_PATH}}/README.md
+        --datasource config={{.MODULE_PATH}}/README.yaml
         --datasource includes={{.README_INCLUDES}}
+
+  test:
+    desc: test module
+    silent: true
+    cmds:
+      - >-
+        go test -race -v ./{{.MODULE_PATH}}/... -coverprofile cover.out -timeout 60m

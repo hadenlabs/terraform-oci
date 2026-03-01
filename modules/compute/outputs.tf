@@ -32,3 +32,8 @@ output "public_ip" {
   description = "The public IP of the instance"
   value       = local.outputs.module_enabled ? one(oci_core_instance.this[*].public_ip) : null
 }
+
+output "module_enabled" {
+  description = "Whether the module is enabled"
+  value       = local.outputs.module_enabled
+}

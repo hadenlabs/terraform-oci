@@ -26,7 +26,7 @@ badges:
 
 # Short description of this user
 description: |-
-  Module compute oc
+  Module compute compute
 
 usages:
   - modules/compute/docs/usage.md

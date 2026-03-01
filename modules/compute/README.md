@@ -16,7 +16,7 @@
 
 # compute
 
-Module compute oc
+Module compute compute
 
 ## Usage
 
@@ -81,6 +81,7 @@ No modules.
 | display_name   | The display name of the instance  |
 | instance_id    | The OCID of the instance          |
 | instance_state | The state of the instance         |
+| module_enabled | Whether the module is enabled     |
 | private_ip     | The private IP of the instance    |
 | public_ip      | The public IP of the instance     |
 | shape          | The shape of the instance         |

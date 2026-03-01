@@ -1,164 +1,291 @@
-# agents.md - Guía para Agentes de IA
+# AGENTS.md – Contexto del Proyecto para Agentes de IA
 
-## Información del Proyecto
+## Información General del Proyecto
 
-**Nombre:** terraform-oci **Tipo:** Módulos de Terraform para Oracle Cloud Infrastructure (OCI) **Proveedor:** oracle/oci (v4.67.3+) **Versión de Terraform:** >= 1.0.0
+**Nombre:** terraform-oci **Tipo:** Módulos reutilizables de Terraform para Oracle Cloud Infrastructure **Versión de Terraform:** >= 1.0.0 **Provider:** oracle/oci (v4.67.3+) **Framework de Testing:** Go + Terratest **Utilidades de Testing:** internal/testutil/oci (generadores de datos tipo faker)
+
+---
+
+## Propósito del Proyecto
+
+Este repositorio provee:
+
+- Módulos reutilizables de OCI en Terraform
+- Testing automatizado utilizando Terratest
+- Generadores de datos fake para aislamiento de pruebas
+- Flujos de validación preparados para CI
+
+El agente de IA debe ser capaz de:
+
+- Generar nuevos módulos Terraform
+- Generar suites de pruebas con Terratest
+- Utilizar utilidades internas de faker para datos de prueba
+- Garantizar consistencia estructural de los módulos
+- Cumplir estrictamente las convenciones del proyecto
+
+---
 
 ## Estructura del Proyecto
 
 ```
 terraform-oci/
-├── .ci/                       # Configuración de CI/CD
-│   ├── config/                # Configuraciones
-│   └── linters/              # Configuraciones de linters
-├── .github/                   # GitHub workflows y templates
-├── modules/                   # Módulos de Terraform
-│   ├── network/               # Redes (VCN, Subnets, Security Lists)
-│   ├── compute/               # Instancias de compute
-│   ├── database/             # Bases de datos
-│   ├── object-storage/        # Object Storage
-│   └── identity/             # IAM (Compartments, Groups)
-├── examples/                  # Ejemplos de uso
-│   └── basic/                 # Ejemplo básico
-├── config/                    # Código Go
-├── docs/                      # Documentación
-├── test/                      # Tests
-├── Taskfile.yml              # Comandos automatizados
-├── pyproject.toml            # Configuración Python
-├── go.mod                     # Módulos Go
-└── package.json              # Dependencias Node
+├── modules/                    # Módulos reutilizables
+│   ├── network/
+│   ├── compute/
+│   ├── identity/
+│   ├── database/
+│   └── object-storage/
+├── examples/                   # Ejemplos de uso
+├── internal/
+│   └── testutil/
+│       └── oci/                # Generadores de datos fake
+├── test/                       # Pruebas Terratest
+├── docs/
+├── Taskfile.yml
+└── go.mod
 ```
 
-## Recursos OCI Soportados
+---
 
-El proveedor `oracle/oci` soporta más de 100 servicios. Los recursos principales incluyen:
+## Convenciones de Desarrollo de Módulos
 
-### Core Services (Networking, Compute, Block Volume)
+### Estructura Obligatoria por Módulo
 
-- `oci_core_vcn` - Virtual Cloud Network
-- `oci_core_subnet` - Subnets
-- `oci_core_security_list` - Security Lists
-- `oci_core_route_table` - Route Tables
-- `oci_core_instance` - Compute Instances
-- `oci_core_volume` - Block Volumes
-- `oci_core_boot_volume` - Boot Volumes
+Cada módulo debe contener:
 
-### Identity
+```
+main.tf
+variables.tf
+outputs.tf
+README.md
+LICENSE
+auth.tf
+data.tf
+variables.tf
+README.yaml
+versions.tf
+Taskfile.yml
+./docs
+./test
+```
 
-- `oci_identity_compartment` - Compartments
-- `oci_identity_group` - Groups
-- `oci_identity_user` - Users
-- `oci_identity_policy` - Policies
+---
 
-### Database
+### Reglas para Variables
 
-- `oci_database_db_system` - Database Systems
-- `oci_database_autonomous_database` - Autonomous Database
+- Toda variable debe definir:
+  - `description`
+  - `type`
 
-### Object Storage
-
-- `oci_objectstorage_bucket` - Buckets
-- `oci_objectstorage_object` - Objects
-
-### Otros Servicios
-
-- `oci_file_storage_file_system` - File Storage
-- `oci_load_balancer_load_balancer` - Load Balancers
-- `oci_containerengine_cluster` - Kubernetes clusters
-- `oci_bastion_bastion` - Bastion service
-
-## Provider Configuration
+- Los valores sensibles deben incluir:
 
 ```hcl
-provider "oci" {
-  tenancy_ocid     = var.tenancy_ocid
-  user_ocid        = var.user_ocid
-  private_key_path = var.private_key_path
-  fingerprint      = var.fingerprint
-  region           = var.region
-}
+sensitive = true
 ```
 
-## Variables Comunes
+- No se permiten OCIDs ni regiones hardcodeadas.
+- Se debe priorizar el uso de variables sobre valores constantes.
 
-### Requeridas:
+---
 
-- `tenancy_ocid` (string) - OCID del tenancy
-- `region` (string) - Región de OCI (ej: us-ashburn-1)
+### Reglas para Outputs
 
-### Opcionales:
+- Todo output debe definir:
+  - `description`
+- Se deben exponer:
+  - IDs de recursos creados
+  - Atributos relevantes
+  - La bandera `module_enabled`
 
-- `compartment_ocid` (string) - OCID del compartment (default: tenancy_ocid)
+---
 
-## Comandos Principales
+## Patrón module_enabled (Obligatorio)
 
-```bash
-# Setup e instalación
-task setup                     # Instalar todas las dependencias
-task environment               # Configurar entorno de desarrollo
-
-# Terraform
-task terraform:fmt             # Formatear código Terraform
-task terraform:validate        # Validar configuración
-task terraform:plan            # Planificar cambios
-
-# Desarrollo
-task generate                  # Generar archivos
-task prettier                  # Formatear código
-
-# Testing
-task test                      # Ejecutar tests de Go
-
-# Documentación
-task readme                    # Generar README
-task docs                      # Generar documentación
-
-# Ver tareas disponibles
-task -l
-```
-
-## Ejemplo de Uso
+Todos los módulos deben implementar:
 
 ```hcl
-# Configurar provider
-provider "oci" {
-  tenancy_ocid     = "ocid1.tenancy.oc1..xxxxx"
-  user_ocid        = "ocid1.user.oc1..xxxxx"
-  private_key_path = "~/.oci/oci_api_key.pem"
-  fingerprint      = "xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx"
-  region           = "us-ashburn-1"
-}
-
-# Crear compartment
-module "compartment" {
-  source = "./modules/identity/compartment"
-
-  name           = "my-compartment"
-  description   = "Compartment for my resources"
-  compartment_id = var.tenancy_ocid
-}
-
-# Crear VCN
-module "network" {
-  source = "./modules/network/vcn"
-
-  cidr_block     = "10.0.0.0/16"
-  compartment_id = module.compartment.compartment_id
-  region         = "us-ashburn-1"
+variable "module_enabled" {
+  description = "Indica si el módulo está habilitado"
+  type        = bool
+  default     = true
 }
 ```
 
-## Recursos Clave
+Todos los recursos deben usar:
 
-- **Terraform Registry (OCI):** https://registry.terraform.io/providers/oracle/oci/latest
-- **Documentación OCI:** https://docs.oracle.com/en-us/iaas/Content/dev/terraform/supported-services.htm
-- **Tutoriales:** https://developer.hashicorp.com/terraform/tutorials/oci-get-started
+```hcl
+count = local.outputs.module_enabled ? 1 : 0
+```
 
-## Notas para Agentes
+Y exponer:
 
-- Usar provider `oracle/oci` (no hashicorp/oci)
-- Siempre usar `sensitive = true` para claves y passwords
-- Usar conditional resources con `count = var.module_enabled ? 1 : 0`
-- Incluir descripciones en todas las variables y outputs
-- Usar Taskfile para comandos automatizados
-- Este proyecto crea módulos reutilizables para diferentes servicios de OCI
+```hcl
+output "module_enabled" {
+  value       = var.module_enabled
+  description = "(Optional) Whether to create resources within the module or not. Default is true."
+}
+```
+
+## versions.tf
+
+Debe incluir:
+
+```hcl
+terraform {
+  required_version = ">= 1.0.0"
+
+  required_providers {
+    oci = {
+      source  = "oracle/oci"
+      version = ">= 4.67.3"
+    }
+  }
+}
+```
+
+---
+
+## Arquitectura de Testing
+
+Todos los módulos deben incluir cobertura con Terratest.
+
+### Framework de Testing
+
+- Go
+- Terratest
+- Testify
+- Ejecución paralela usando `t.Parallel()`
+
+---
+
+### Uso Obligatorio de Faker Interno
+
+Las pruebas deben utilizar las utilidades internas ubicadas en:
+
+```
+internal/testutil/oci
+```
+
+Ejemplo:
+
+```go
+compute := oci.NewCompute()
+
+compartmentID := compute.CompartmentID
+availabilityDomain := compute.AvailabilityDomain
+displayName := compute.DisplayName
+sshPublicKey := compute.SshPublicKey
+shape := compute.Shape
+```
+
+Reglas obligatorias:
+
+- No hardcodear OCIDs.
+- No hardcodear availability domains.
+- Usar display names generados dinámicamente.
+- Garantizar aislamiento entre pruebas.
+
+---
+
+## Patrón Estándar de Terratest
+
+Toda prueba debe seguir la siguiente estructura:
+
+```go
+t.Parallel()
+
+terraformOptions := &terraform.Options{
+    TerraformDir: "<example-folder>",
+    Upgrade:      true,
+    Vars: map[string]interface{}{
+        ...
+        "module_enabled": true,
+    },
+}
+
+defer terraform.Destroy(t, terraformOptions)
+
+terraform.InitAndApply(t, terraformOptions)
+
+output := terraform.Output(t, terraformOptions, "<output_name>")
+
+assert.Equal(t, "true", output)
+```
+
+Reglas obligatorias:
+
+- Siempre ejecutar `defer terraform.Destroy`
+- Siempre validar al menos un output
+- No dejar infraestructura sin destruir
+- Utilizar assertions
+
+---
+
+## Reglas de Seguridad
+
+El agente debe:
+
+- Marcar claves SSH y datos sensibles como `sensitive = true`
+- No exponer secretos en outputs
+- No imprimir claves privadas en logs
+- No filtrar credenciales en pruebas
+
+---
+
+## Flujo para Agregar un Nuevo Módulo
+
+Cuando el agente genere un nuevo módulo, debe:
+
+1. Crear carpeta bajo `modules/<nombre>`
+2. Crear:
+   - `main.tf`
+   - `variables.tf`
+   - `outputs.tf`
+   - `README.md`
+
+3. Implementar el patrón `module_enabled`
+4. Crear pruebas Terratest en `test/<nombre-modulo>/`
+5. Utilizar faker interno
+6. Validar con:
+
+```
+task terraform:fmt
+```
+
+---
+
+## Reglas de Comportamiento del Agente
+
+Al generar o modificar código, el agente debe:
+
+- Seguir las convenciones existentes
+- Usar snake_case para variables
+- Mantener compatibilidad hacia atrás
+- No romper interfaces públicas
+- No modificar la configuración del provider dentro de los módulos
+- No introducir dependencias implícitas entre módulos
+
+---
+
+## Acciones Prohibidas
+
+El agente no debe:
+
+- Hardcodear OCIDs del tenancy
+- Omitir pruebas
+- Crear recursos sin `module_enabled`
+- Exponer secretos
+- Modificar el provider en módulos internos
+
+---
+
+## Referencia Canónica
+
+Se considera implementación válida aquella que:
+
+- Usa `oci.NewCompute()`
+- Usa `t.Parallel()`
+- Usa `defer terraform.Destroy`
+- Valida outputs mediante assertions
+
+Referencia: `TestComputeBasicSuccess`
