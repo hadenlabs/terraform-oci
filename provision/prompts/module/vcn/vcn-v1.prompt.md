@@ -61,8 +61,8 @@ El agente debe asegurarse de que:
    module_vcn: ./modules/vcn/Taskfile.yml
 
 3. En la tarea global de generación de documentación se ejecute:
-   - terraform:doc con TERRAFORM_PATH=modules/compartment
-   - module_compartment:readme
+   - terraform:doc con TERRAFORM_PATH=modules/vcn
+   - module_vcn:readme
 
 No omitir esta integración.
 
